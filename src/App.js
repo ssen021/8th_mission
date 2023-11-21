@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import Celebrity from "./pages/Celebrity";
 import Home from "./pages/Home";
@@ -9,6 +10,7 @@ import MovieDetail from "./pages/MovieDetail";
 import Loginpage from "./pages/Loginpage";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className="root-wrap">
       <BrowserRouter>
@@ -20,7 +22,10 @@ function App() {
           <Route path="/Celebrity" element={<Celebrity />} />
           <Route path="/movie/:title" element={<MovieDetail />} />
           <Route path="/*" element={<NotFound />} />
-          <Route path="/Login" element={<Loginpage />} />
+          <Route
+            path="/Login"
+            element={<Loginpage setIsLoggedIn={setIsLoggedIn} />}
+          />
         </Routes>
       </BrowserRouter>
     </div>
